@@ -5,6 +5,11 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(email: 'user@example.com', password: 'password')
   end
 
+  test '郵便番号は存在していなくてもよい' do
+    @user.zip_code = nil
+    assert @user.valid?
+  end
+
   test '郵便番号は7桁の数字でなければならない' do
     @user.zip_code = 1234567
     assert @user.valid?
