@@ -5,6 +5,12 @@ require 'application_system_test_case'
 class BooksTest < ApplicationSystemTestCase
   setup do
     @book = books(:one)
+    @user = users(:test_user)
+
+    visit new_user_session_path
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: 'password'
+    click_button 'ログイン'
   end
 
   test 'visiting the index' do
