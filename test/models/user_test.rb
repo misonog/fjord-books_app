@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
@@ -11,12 +13,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '郵便番号は7桁の数字でなければならない' do
-    @user.zip_code = 1234567
+    @user.zip_code = 123_456_7
     assert @user.valid?
   end
 
   test '郵便番号は7桁でなければならない' do
-    @user.zip_code = 12345678
+    @user.zip_code = 123_456_78
     assert_not @user.valid?
   end
 
