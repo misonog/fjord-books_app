@@ -17,4 +17,13 @@ class UsersTest < ApplicationSystemTestCase
     click_link 'ログアウト'
     assert page.assert_current_path(new_user_session_path)
   end
+
+  test 'visiting the user index' do
+    visit new_user_session_path
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: 'password'
+    click_button 'ログイン'
+    visit users_index_path
+    assert_selector 'h1', text: 'ユーザー'
+  end
 end
