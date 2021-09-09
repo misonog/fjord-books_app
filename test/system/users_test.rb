@@ -23,7 +23,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: 'password'
     click_button 'ログイン'
-    visit users_index_path
+    visit users_path
     assert_selector 'h1', text: 'ユーザー'
   end
 end
