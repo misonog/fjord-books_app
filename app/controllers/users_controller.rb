@@ -10,5 +10,6 @@ class UsersController < ApplicationController
 
   # GET /books/1
   def show
+    @user = User.find(params[:id])
   end
 end
