@@ -1,5 +1,9 @@
 en:
-  edit_book: Editing book
+  books:
+    new:
+      title: New Book
+    edit:
+      title: Editing book
   confirm: Are you sure?
   flash:
     new: "%{model} was successfully created."
