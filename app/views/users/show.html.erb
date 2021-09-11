@@ -2,7 +2,7 @@
 
 <% if @user.icon.attached? %>
   <p>
-    <%= image_tag @user.icon %>
+    <%= image_tag @user.icon.variant(resize_to_fill: [200, 200]) %>
   </p>
 <% end %>
 
