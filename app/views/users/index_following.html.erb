@@ -1,0 +1,4 @@
+<h1><%= t('.title') %></h1>
+<%= render 'users/users', users: @following %>
+<%= paginate @following %>
+<%= link_to t('views.common.back'), @user %>

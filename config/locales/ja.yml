@@ -242,3 +242,7 @@ ja:
     show:
       following: "フォロー"
       followers: "フォロワー"
+    index_following:
+      title: "フォロー一覧"
+    index_follow:
+      title: "フォロワー一覧"
