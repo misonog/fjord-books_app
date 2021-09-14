@@ -13,7 +13,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    @report = Report.new
+    @report = current_user.reports.new
   end
 
   # GET /reports/1/edit
@@ -21,7 +21,7 @@ class ReportsController < ApplicationController
 
   # POST /reports
   def create
-    @report = Report.new(report_params)
+    @report = current_user.reports.new(report_params)
 
     respond_to do |format|
       if @report.save
@@ -36,7 +36,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, t('controllers.common.notice_update', name: Report.model_name.human) }
+        format.html { redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
