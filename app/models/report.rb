@@ -9,4 +9,8 @@ class Report < ApplicationRecord
   def created_by?(target_user)
     user == target_user
   end
+
+  def created_on
+    created_at.to_date
+  end
 end
