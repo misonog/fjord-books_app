@@ -106,7 +106,7 @@ objects.each do |commentable|
     3.times do |n|
       commentable.comments.create!(
         content: "sample-#{n}",
-        user: users.sample, # 同一ユーザーが生成されてしまう
+        user: users.sample,
         created_at: n.minutes.ago,
         updated_at: n.minutes.ago
       )
