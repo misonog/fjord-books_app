@@ -98,4 +98,20 @@ Report.transaction do
   end
 end
 
+Comment.destroy_all
+
+objects = [Book.first, Report.last]
+objects.each do |commentable|
+  Comment.transaction do
+    3.times do |n|
+      commentable.comments.create!(
+        content: "sample-#{n}",
+        user: users.sample, # 同一ユーザーが生成されてしまう
+        created_at: n.minutes.ago,
+        updated_at: n.minutes.ago
+      )
+    end
+  end
+end
+
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
