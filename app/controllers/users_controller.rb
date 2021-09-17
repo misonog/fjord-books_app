@@ -2,7 +2,9 @@
 
 class UsersController < ApplicationController
   def index
-    @users = User.order(:id).page(params[:page])
+    # 以下を参考に N+1 問題を回避
+    # https://edgeapi.rubyonrails.org/classes/ActiveStorage/Attached/Model.html#method-i-has_one_attached
+    @users = User.with_attached_icon.order(:id).page(params[:page])
   end
 
   def show
