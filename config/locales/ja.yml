@@ -238,3 +238,13 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+  users:
+    show:
+      following: "フォロー"
+      followers: "フォロワー"
+    following:
+      index:
+        title: "フォロー一覧"
+    followers:
+      index:
+        title: "フォロワー一覧"
