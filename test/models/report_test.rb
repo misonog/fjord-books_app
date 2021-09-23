@@ -11,6 +11,7 @@ class ReportTest < ActiveSupport::TestCase
 
   test 'created_on' do
     report = reports(:alice)
+    travel_to Time.zone.local(2021, 9, 23)
     assert_equal Date.current, report.created_on
   end
 end
