@@ -14,18 +14,31 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'alice@example.com', user.name_or_email
   end
 
-  test 'ユーザーをfollowとunfollowできる' do
+  test 'followしているかの判定' do
     alice = users(:alice)
     bob = users(:bob)
     assert_not alice.following?(bob)
-    assert_not bob.followed_by?(alice)
+    assert bob.following?(alice)
+  end
 
+  test 'followされているかの判定' do
+    alice = users(:alice)
+    bob = users(:bob)
+    assert alice.followed_by?(bob)
+    assert_not bob.followed_by?(alice)
+  end
+
+  test 'ユーザーをfollowする' do
+    alice = users(:alice)
+    bob = users(:bob)
     alice.follow(bob)
-    assert alice.following?(bob)
-    assert bob.followed_by?(alice)
+    assert bob.followers.include?(alice)
+  end
 
-    alice.unfollow(bob)
-    assert_not alice.following?(bob)
-    assert_not bob.followed_by?(alice)
+  test 'ユーザーをunfollowする' do
+    alice = users(:alice)
+    bob = users(:bob)
+    bob.unfollow(alice)
+    assert_not alice.followers.include?(bob)
   end
 end
