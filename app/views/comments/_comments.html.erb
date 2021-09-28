@@ -1,0 +1,14 @@
+<div>
+  <h2><%= Comment.model_name.human %></h2>
+  <% if commentable.comments.present? %>
+    <% commentable.comments.includes(:user).order(:id).each do |comment| %>
+      <div>
+        <%= comment.content %>
+        <br>
+        <small><%= comment.user.name_or_email %> <%= l comment.created_at.to_date, format: :short %></small>
+      </div>
+    <% end %>
+  <% else %>
+    <%= t('.no_comment') %>
+  <% end %>
+</div>

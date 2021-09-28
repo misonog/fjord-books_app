@@ -83,4 +83,35 @@ User.order(id: :desc).each do |user|
   end
 end
 
+Report.destroy_all
+
+users = User.all.to_a
+Report.transaction do
+  55.times do |n|
+    user = users.sample
+    user.reports.create!(
+      title: "sample-#{n}",
+      content: "sample-#{n}",
+      created_at: n.minutes.ago,
+      updated_at: n.minutes.ago
+    )
+  end
+end
+
+Comment.destroy_all
+
+objects = [Book.first, Report.last]
+objects.each do |commentable|
+  Comment.transaction do
+    3.times do |n|
+      commentable.comments.create!(
+        content: "sample-#{n}",
+        user: users.sample,
+        created_at: n.minutes.ago,
+        updated_at: n.minutes.ago
+      )
+    end
+  end
+end
+
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
