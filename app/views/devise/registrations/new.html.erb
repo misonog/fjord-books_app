@@ -26,6 +26,10 @@
   <div class="actions">
     <%= f.submit t('.sign_up') %>
   </div>
+
+  <span>
+    <%= f.file_field :icon %>
+  </span>
 <% end %>
 
 <%= render "devise/shared/links" %>
